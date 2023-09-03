@@ -37,6 +37,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
       t.string :google_id
 
       t.timestamps null: false
+
+      t.string :username, null: false
     end
 
     add_index :users, :email,                unique: true
