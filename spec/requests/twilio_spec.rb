@@ -7,7 +7,7 @@ RSpec.describe "Twilios", type: :request do
   #       it 'gets a response from an api' do
   #         post :voice, params: { Body: 'paris', From: '+33653563224' }
   #         expect(response.sent?).to be true
-  #         expect(controller.alert_message).to eq("1 Résultats, dont: 1/#{item.description}/#{item.place}/ Frigohero")
+  #         expect(controller.alert_message).to eq("1 Résultats, dont: 1/#{item.description}/#{item.address}/ Frigohero")
   #       end
   #     end
   #     context 'without item around' do

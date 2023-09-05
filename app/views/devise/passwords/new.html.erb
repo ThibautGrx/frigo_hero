@@ -1,0 +1,31 @@
+<% content_for :for_head do %>
+<title>FrigoHero | Mot de passe oublié </title>
+<% end %>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="card card-login main-card col-10 col-sm-8 col-md-5">
+      <div class="card-header">J'ai oublié mon mot de passe</div>
+      <div class="card-body">
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+        <div class="repère"></div>
+        <%= render "devise/shared/error_messages", resource: resource %>
+        <% flash.each do |key, value| %>
+        <div class="alert alert-danger">
+          <%= value %>
+        </div>
+        <% end %>
+
+        <div class="form-group">
+          <label for="formGroupEmailInput">Email</label><br>
+          <%= f.email_field :email, :placeholder => 'exemple@frigohero.com', class:"form-control"%>
+        </div>
+
+        <div>
+          <%= f.submit "Envoyez-moi un nouveau mot de passe",:class=>'btn btn-primary btn-block buttonlog1' %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

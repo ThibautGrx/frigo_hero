@@ -1,0 +1,74 @@
+<% content_for :for_head do %>
+<title>FrigoHero | S'inscrire </title>
+<% end %>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="card card-login main-card col-10 col-sm-8 col-md-5">
+      <div class="card-header">Inscription</div>
+      <div class="card-body">
+        <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+        <div class="repère"></div>
+        <%= render "devise/shared/error_messages", resource: resource %>
+        <% flash.each do |key, value| %>
+        <div class="alert alert-danger">
+          <%= value %>
+        </div>
+        <% end %>
+
+        <div class="form-group">
+          <label for="formGroupUsernameInput">Pseudonyme</label><br>
+          <%= f.text_field :username, :autofocus => true, :placeholder => 'Pierre17', class:"form-control"%>
+        </div>
+        <div class="form-group">
+          <label for="formGroupEmailInput">Email</label><br>
+          <%= f.email_field :email, :placeholder => 'exemple@frigohero.com', class:"form-control"%>
+        </div>
+        <div class="form-group">
+          <label for="formGroupPasswordInput">Mot de passe</label><br>
+          <%= f.password_field :password, :placeholder => 'Au moins 6 caractères', class:"form-control"%>
+        </div>
+        <div class="form-group">
+          <label for="formGroupPasswor_confirmationdInput">Confirmation du mot de passe</label><br>
+          <%= f.password_field :password_confirmation, :placeholder => 'Au moins 6 caractères', class:"form-control"%>
+        </div>
+        <div class='mb-2'>
+          <input id="field_terms" type="checkbox" required name="terms"> J'ai lu et accepte les <a href="/pages/cgu">Conditions
+            Générales d'Utilisations</a>
+        </div>
+        <div>
+          <%= f.submit "S'inscrire",:class=>'btn btn-primary btn-block buttonlog1' %>
+        </div>
+        <% end %>
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+
+    var myForm = document.getElementById("example4");
+    var checkForm = function (e) {
+      ...
+      if (!this.terms.checked) {
+        alert("Vous devez accepter les CGU pour pouvoir vous inscrire");
+        this.terms.focus();
+        e.preventDefault();
+        return;
+      }
+    };
+
+    myForm.addEventListener("submit", checkForm, true);
+
+    var myCheckbox = document.getElementById("field_terms");
+    var myCheckboxMsg = "Vous devez accepter les CGU pour pouvoir vous inscrire";
+
+    myCheckbox.setCustomValidity(myCheckboxMsg);
+
+    myCheckbox.addEventListener("change", function () {
+      this.setCustomValidity(this.validity.valueMissing ? myCheckboxMsg : "");
+    }, false);
+
+  }, false);
+</script>

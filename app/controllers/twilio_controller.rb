@@ -15,7 +15,7 @@ class TwilioController < ApplicationController
       items_selected = items.first(2)
       if items_selected.count.positive?
         result = items.map.with_index do |item, index|
-          "#{index + 1}/#{item.description}/#{item.place}/#{item.user.phone}"
+          "#{index + 1}/#{item.description}/#{item.address}/#{item.user.phone}"
         end
         "#{items_count} Résultats, dont: #{result} Frigohero"
       else

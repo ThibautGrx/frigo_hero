@@ -1,13 +1,6 @@
 @font-face {
   font-family: 'Hero';
-  src:font-url('hero.ttf');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Roboto';
-  src:font-url('Roboto-Regular.ttf');
+  src: url('hero.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -15,10 +8,6 @@
 html, body {
     height: 100%;
 }
-
-* {
-  font-family: "Roboto";
- }
 
 p {
   margin-bottom: 0px !important;
@@ -46,7 +35,6 @@ p {
 
 .lp-content{
   z-index:1;
-  font-family: 'Montserrat'!important;
 }
 
 .fill {
@@ -61,6 +49,7 @@ p {
 #navbarResponsive > ul > li > a :hover {
   color: #EE422E;
 }
+
 
 .logo{
   color: #EE422E;
@@ -399,7 +388,7 @@ margin-bottom: 10px;
   color:#FE0000;
   font-size: 1em;
   background-color: rgba(255,255,255,0.5) ;
-  width: 270px;
+  width: auto;
   margin-bottom: 80px;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -457,6 +446,7 @@ width: 60px;
 
 .maintenance{			
   position: absolute;
+  width:auto;
   font-size: 2em;
   color: #ffbf00;
   z-index: 1;

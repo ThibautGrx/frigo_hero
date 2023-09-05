@@ -1,4 +1,4 @@
-Rails.application.routes.draw do
+Rails.application.routes.draw do  
   get 'twilio/voice'
   resources :profiles
   root 'pages#landingpage'

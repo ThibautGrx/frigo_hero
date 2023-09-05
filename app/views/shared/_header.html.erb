@@ -81,14 +81,14 @@
     <i class="fa fa-search"></i>
   </button>
   <%end%>
-  <div class="collapse navbar-collapse" id="navbarResponsive2">
+  <div class="collapse navbar-collapse d-flex flex-row justify-content-between" id="navbarResponsive2">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <div class="btn btn-red nav-btn" id="buttonmap">Carte</div>
         <div class="btn btn-red nav-btn" id="buttontable">Liste</div>
       </li>
     </ul>
-    <%= form_tag(items_path, :method => "get", id: "search-form", class:"form-inline") do %>
+    <%= form_tag(items_path, :method => "get", id: "search-form", class:"d-flex justify-content-around") do %>
     <%= select_tag(:category, options_for_select([['Categorie',nil],['Petit frigo', "smallfridge"], ['Moyen frigo', 'mediumfridge'],['Grand Frigo', 'largefridge']]), class:"form-control mr-sm-2") %>
     <%= text_field_tag :address, params[:search], placeholder: "Addresse", class: "form-control mr-sm-2", id:"user_input_autocomplete_address" %>
     <%= submit_tag "rechercher", :name => nil,class:"btn btn-red nav-btn" %>

@@ -1,0 +1,56 @@
+<% content_for :for_head do %>
+<title>FrigoHero | Modifier mon profile </title>
+<% end %>
+<div class="row justify-content-center">
+  <div class="card main-card col-8 col-lg-5 col-xs-offset-3">
+    <div class="card-header">
+      <div class="row align-items-center justify-content-between">
+        <span class="indented">Edite ton profile
+          <%= resource_name.to_s.humanize %></span>
+        <%= button_to "Retour",:back ,:method => :get, :class =>"btn btn-secondary return-button" %>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="form-horizontal">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+        <% flash.each do |key, value| %>
+        <div class="alert alert-danger">
+          <%= value %>
+        </div>
+        <% end %>
+        <div class="form-group">
+          <label for="formGroupUsernameInput">Pseudonyme</label><br>
+          <%= f.text_field :username, class:"form-control"%>
+        </div>
+        <div class="form-group">
+          <label for="formGroupEmailInput">Email</label><br>
+          <%= f.email_field :email, class:"form-control" %>
+        </div>
+        <div class="form-group">
+          <label for="formGroupPasswordInput">Mot de passe</label><br>
+          <%= f.password_field :password, :placeholder => 'minimum de 6 caractères', class:"form-control" %>
+        </div>
+        <div class="form-group">
+          <label for="formGroupPasswor_confirmationdInput">Confirme ton nouveau mot de passe</label><br>
+          <%= f.password_field :password_confirmation, :placeholder => 'minimum de 6 caractères', class:"form-control" %>
+        </div>
+        <div class="form-group">
+          <label for="formGroupCurrent_passwordInput">Ancien mot de passe</label><br>
+          <%= f.password_field :current_password, :placeholder => '*******', class:"form-control"%>
+        </div>
+        <div>
+          <%= f.submit "Je valide mon profil !",:class=>'btn btn-primary btn-block' %>
+        </div>
+        <div>
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div>Nous attendons toujours votre confirmation :
+            <%= resource.unconfirmed_email %>
+          </div>
+          <% end %>
+        </div>
+        <% end %><br>
+        <%= button_to "Me désinscrire", registration_path(resource_name), data: { confirm: "Etes vous sûr de vouloir vous désinscrire ?" }, method: :delete,class:'btn btn-danger btn-block btn-sm' %>
+      </div>
+    </div>
+  </div>

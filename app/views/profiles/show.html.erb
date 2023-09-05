@@ -1,10 +1,150 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :for_head do %>
+<title>FrigoHero | Mon profile |
+  <%=current_user.username %>
+</title>
+<% end %>
 
-<%= render @profile %>
+<div class="row justify-content-center">
+  <div class="card main-card col-10 col-lg-10">
+    <div class="card-body">
+      <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <a class="nav-item nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" role="tab"
+            aria-controls="nav-home" aria-selected="true">
+            <i class="green ace-icon fa fa-user bigger-120"></i>
+            Profil
+          </a>
+          <a class="nav-item nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" role="tab"
+            aria-controls="nav-profile" aria-selected="false">
+            <i class="orange ace-icon fa fa-rss bigger-120"></i>
+            Produits proposés
+          </a>
+        </div>
+      </nav>
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+          <div class="row">
+            <div class="col-xs-12 col-sm-3 center">
+              <div class="profile-picture">
+                <%if @profile.picture.attached?%>
+                <%= image_tag  @profile.picture, class:"img-fluid" %>
+                <%else%>
+                <%= image_tag  'default-img.png', class:"mx-auto img-fluid" %>
+                <%end%>
+              </div>
+              <div>
+                <a class="btn btn-primary mt-2" href="<%=edit_profile_path%>" role="button">Modifier mon profil</a>
+                <a class="btn btn-secondary btn-small mt-1" href="<%=edit_user_registration_path%>" role="button">Modifier
+                  mes identifiants</a>
+              </div>
+            </div>
 
-<div>
-  <%= link_to "Edit this profile", edit_profile_path(@profile) %> |
-  <%= link_to "Back to profiles", profiles_path %>
+            <div class="col-xs-12 col-sm-9">
+              <h4 class="blue ml-5">
+                <span class="middle">
+                  <%=current_user.username%></span>
+              </h4>
 
-  <%= button_to "Destroy this profile", @profile, method: :delete %>
+              <div class="profile-user-info">
+                <div class="profile-info-row">
+                  <div class="profile-info-name">Prénom </div>
+
+                  <div class="profile-info-value">
+                    <span>
+                      <%= @profile.first_name || "Non renseigné "%></span>
+                  </div>
+                </div>
+                <div class="profile-info-row">
+                  <div class="profile-info-name">Nom </div>
+
+                  <div class="profile-info-value">
+                    <span>
+                      <%= @profile.last_name || "Non renseigné "%></span>
+                  </div>
+                </div>
+
+                <div class="profile-info-row">
+                  <div class="profile-info-name"> Adresse </div>
+
+                  <div class="profile-info-value">
+                    <i class="fa fa-map-marker light-orange bigger-110"></i>
+                    <span>
+                      <%= (@profile.address) || "Non renseigné "%></span>
+                  </div>
+                </div>
+
+                <div class="profile-info-row">
+                  <div class="profile-info-name"> Insciption </div>
+
+                  <div class="profile-info-value">
+                    <span>
+                      <%=time_tag(current_user.created_at)%></span>
+                  </div>
+                </div>
+                <div class="profile-info-row">
+                  <div class="profile-info-name"> Email </div>
+
+                  <div class="profile-info-value">
+                    <span>
+                      <%=current_user.email%></span>
+                  </div>
+                </div>
+                <div class="profile-info-row">
+                  <div class="profile-info-name"> Numéro de téléphone </div>
+
+                  <div class="profile-info-value">
+                    <span>
+                      <%=@profile.phone || "Non renseigné "%></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>n°</th>
+                  <th>Contenant</th>
+                  <th>lieu</th>
+                  <th>date de fin</th>
+                  <th colspan="3"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% current_user.items.each do |item| %>
+                <tr>
+                  <td>
+                    <%=item.id%>
+                  </td>
+                  <td>
+                    <%=item.description%>
+                  </td>
+                  <td>
+                    <%=item.address%>
+                  </td>
+                  <td>
+                    <%=item.date%>
+                  </td>
+                  <td>
+                    <%= link_to 'Voir', item_path(:id => item.id) %>
+                  </td>
+                  <td>
+                    <%= link_to 'Editer', edit_item_path(:id => item.id), :method => :get %>
+                  </td>
+                  <td>
+                    <%= link_to 'Supprimer', item_path(:id => item.id), :method => :delete %>
+                  </td>
+                </tr>
+                <%end%>
+              </tbody>
+            </table>
+            <a class="btn btn-primary" href="/items/new" role="button">Poster une nouvelle annonce</a><br><br>
+          </div>
+        </div>
+      <div>
+    </div>
+  </div>
 </div>

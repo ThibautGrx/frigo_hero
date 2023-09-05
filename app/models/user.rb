@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  attr_accessor :login
+  
   has_many :items, dependent: :destroy
   has_many :interests, dependent: :destroy
   has_many :interested_items, through: :interests, source: :item
