@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="card main-card col-lg-12">
+      <div class="card-header">
+        <div class="row row align-items-center justify-content-between">
+          <span class="indented">LISTE DES PRODUITS AUTOUR DE
+            <%if params[:address]&&params[:address]!=""%>
+            "
+            <%=params[:address]%>"
+            <%else%>
+              VOUS
+            <%end%>
+          </span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="list-group">
+
+          <%@itemspag.each do |item|%>
+          <button class="list-group-item list-group-item-action button_list" href="<%=item_path(:id => item.id)%>">
+            <div class="row justify-content-end">
+              <div class="col-5 col-sm-3 col-md-2">
+                <%if item.image.attached? %>
+                  <%=link_to  image_tag(item.image, class:"img-fluid"), item_path(:id => item.id)%>
+                <%else item.image %>
+                  <%=link_to image_tag('default-img'),item_path(:id => item.id)%>
+                <%end %>
+              </div>
+              <div class="col-7 col-sm-9 col-md-5">
+                <p><span class="itemdescriptionindex">
+                  <%=item.description%></span><br>
+                  <i class="fa fa-th-large"></i>
+                  <%case item.category%>
+                  <%when "smallfridge"%>
+                    Petit frigo
+                  <%when "mediumfridge"%>
+                    Moyen frigo
+                  <%when "largefridge"%>
+                    Grand frigo
+                  <%end%><br>
+                </p>
+              </div>
+              <div class="col-7 col-sm-9 col-md-5">
+                <p>
+                  <i class="fa fa-clock-o"></i>
+                  <%=time_tag(item.date)%> <br>
+                  <i class="fa fa-map-marker"></i>
+                  <%=item.address%> <br>
+                  <i class="fa fa-map"></i>
+                  <%=(Geocoder::Calculations.distance_between([request.location.latitude,request.location.longitude ], [item.latitude,item.longitude])* 1.60934).round(2)%>
+                  km
+                </p>
+              </div>
+            </div>
+          </button>
+          <%end%>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <%= paginate @itemspag %>
+      </div>
+      <div class="row justify-content-center">
+        <%= page_entries_info @itemspag %>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

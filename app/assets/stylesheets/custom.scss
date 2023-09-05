@@ -1,0 +1,469 @@
+@font-face {
+  font-family: 'Hero';
+  src:font-url('hero.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src:font-url('Roboto-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html, body {
+    height: 100%;
+}
+
+* {
+  font-family: "Roboto";
+ }
+
+p {
+  margin-bottom: 0px !important;
+}
+
+#bg {
+  position: fixed; 
+  top: -50%; 
+  left: -50%; 
+  width: 200%; 
+  height: 200%;
+  background-color: #000000;
+}
+#bg img {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0; 
+  margin: auto; 
+  min-width: 50%;
+  min-height: 50%;
+  opacity: 0.7;
+}
+
+.lp-content{
+  z-index:1;
+  font-family: 'Montserrat'!important;
+}
+
+.fill {
+  height: 100%;
+}
+
+//--------------------------navbar--------------------------------------------//
+.navbar{
+  z-index: 999;
+}
+
+#navbarResponsive > ul > li > a :hover {
+  color: #EE422E;
+}
+
+.logo{
+  color: #EE422E;
+  font-family: "Hero";
+  font-size: 2em;
+  text-shadow: black 1px 0 2px;
+}
+
+//----------------------------google map--------------------------------------//
+.WindowsInfoText {
+  text-decoration: underline;
+}
+//----------------------------page items--------------------------------------//
+
+.ItemsContainer{
+  display:block;
+  margin: 3%;
+  padding: 2%;
+  border: 2px solid #a8a8a8;
+  background-color: rgba(255,255, 255, 0.9);
+  border-radius: 10px;
+  margin-top: 2%;
+}
+
+@media (max-width: 780px) {
+  #map {
+    width: 100%;
+    height: calc(100% - 178px);
+    position:absolute;
+    display: block;
+  }
+}
+
+@media (min-width: 780px) {
+  #map {
+    width: 100%;
+    height: calc(100% - 206px);
+    position:absolute;
+    display: block;
+  }
+}
+
+
+
+#mapshow {
+    width: 100%;
+    height: 100%;
+    position:absolute;
+    display: block;
+}
+
+#table {
+    width: 100%;
+    height: 100%;
+    position:absolute;
+    display: block;
+}
+
+.alert-index{
+  position: absolute!important;
+  top: 150px!important;
+  z-index: 999!important;
+  width: 100%!important;
+}
+
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
+
+//------------------------- Custom button ------------------------------------//
+
+.btn-red {
+    background: #EE422E;
+    color: #F8F9FA;
+}
+
+.link{
+  color: #F8F9FA;
+  text-decoration: none;
+}
+
+.link:hover{
+  color: #F8F9FA;
+  text-decoration: none;
+}
+
+.link:active{
+  color: #F8F9FA;
+  text-decoration: none;
+}
+
+.btn-red:hover{
+    background: #962a1e;
+}
+
+.btn-red:active{
+    background: #ff523f;
+    box-shadow: none;
+}
+
+.nav-btn{
+  margin-top:5px;
+  margin-bottom:5px;
+  margin-right:5px;
+}
+
+.first-sentence{
+  color: rgb(255, 255, 255);
+  font-size: 2.5em;
+}
+
+.second-sentence{
+  color: rgb(255, 255, 255);
+  font-size: 1.25em;
+}
+
+.smallimg{
+  width:90px;
+  height: auto;
+}
+//------------------------- CSS User's pages -------------------------//
+
+.card {
+  margin-top: 1%;
+  margin-bottom: 70px;
+  padding: 0px !important;
+}
+
+.card-login {
+  margin-top: 1%;
+  margin-bottom: 100px !important;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+  font-size: 16px;
+  height: auto;
+  margin-bottom: 15px;
+  padding: 7px 9px;
+  width: 100%;
+}
+
+.form-container {
+  margin-top: 5%;
+}
+.border-form-div {
+  max-width: 45%;
+  padding: 19px 29px 29px;
+  margin: 0 auto 20px;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+          box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+.border-form-div .form-signin-heading,
+.border-form-div .checkbox {
+  margin-bottom: 10px;
+}
+.border-form-div input[type="text"],
+.border-form-div input[type="email"],
+.border-form-div input[type="password"] {
+  font-size: 16px;
+  height: auto;
+  margin-bottom: 15px;
+  padding: 7px 9px;
+  width: 80%;
+}
+
+//------------------------------------ Video ----------------------------------//
+
+#myBtn {
+    width: 200px;
+    font-size: 18px;
+    padding: 10px;
+    border: none;
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+}
+
+//------------------------- user profil -------------------------//
+.user_profil{
+  background-color: white;
+  margin-top: 1%;
+  margin-bottom: 10%;
+  padding: 2%;
+  border: 1px solid #e5e5e5;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+}
+
+#error_explanation {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  position: relative;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
+
+
+//------------------------------------ Maps ----------------------------------//
+.map-responsive {
+overflow:hidden;
+padding-bottom:56.25%;
+position:relative;
+height:0;
+margin-top: 3%;
+margin-bottom: 3%;
+}
+
+.map-responsive-inside{
+left:0;
+top:0;
+height:100%;
+width:100%;
+position:absolute;
+}
+
+//------------------------------------ Item ----------------------------------//
+
+.item-place{
+font-size: 2em;
+}
+.item-contact{
+font-size: 2em;
+}
+
+.interest-button-container{
+border-top: 1px solid grey;
+border-bottom: 1px solid grey;
+padding-top: 10px;
+padding-bottom: 10px;
+margin-top: 10px
+}
+
+.adress-container{
+border-top: 1px solid grey;
+border-bottom: 1px solid grey;
+padding-top: 10px;
+padding-bottom: 10px;
+text-align: center;
+margin-top: 10px;
+}
+
+.profil-info-container{
+border-bottom: 1px solid grey;
+padding-top: 10px;
+padding-bottom: 10px;
+text-align: left;
+}
+
+.interest-button{
+width: 100%;
+font-size: 1.5em !important;
+}
+
+.edit-button{
+width: 100%;
+font-size: 1.5em !important;
+margin-bottom: 10px;
+}
+
+.return-button{
+  padding: 3px !important;
+}
+
+.indented{
+  text-indent: 15px;
+}
+
+.list-group-item:hover, .list-group-item-action:hover {
+   cursor: pointer;
+}
+
+//------------------------------------ Add item -------------------------------//
+
+#addphoto{
+  background-color: rgba(192,192,192,0.3);
+  width: 100%;
+  padding: 20px;
+}
+
+#addphotobutton{
+  display: none;
+}
+
+.description{
+ height: 295px;
+}
+
+//------------------------------------ kaminari -------------------------------//
+
+.page-link{
+  color: black !important;
+}
+
+.page-item.active .page-link{
+  background-color: #EE422E!important;
+  border-color: #EE422E!important;
+}
+
+.margin{
+  margin-top: 20px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 70px;
+}
+
+.margin-button{
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+
+.video-container{
+  margin-top: 30px;
+}
+
+.smsbox{
+  border-radius: 10px 10px 10px 10px;
+  border: 5px solid #FE0000;
+  color:#FE0000;
+  font-size: 1em;
+  background-color: rgba(255,255,255,0.5) ;
+  width: 270px;
+  margin-bottom: 80px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  float: none;
+  margin-left: 10px;
+  margin-bottom:0px;
+  z-index: 0;
+}
+
+.imagesms{
+width: 60px;
+}
+
+.number{
+  font-size: 1.3em;
+}
+
+.titlenumber{
+  font-size: 1.2em;
+  text-decoration: underline;
+}
+
+.textnumber{
+  margin-top: 10px;
+  font-size: 1.1em;
+}
+
+.itemdescriptionindex{
+  font-size: 1.3em;
+  text-decoration: none;
+}
+
+.buttonlog{
+  margin-top: 5px;
+}
+
+.buttonlog2{
+  margin-top: 30px;
+}
+
+.buttonlog1{
+  margin-bottom: 30px;
+}
+
+.alogin{
+  color: black;
+  text-decoration: underline;
+  font-size: 0.8em;
+}
+
+@media (max-width: 576px) {
+  td {font-size: 0.7em}
+  .indented{font-size: 0.9em}
+}
+
+.maintenance{			
+  position: absolute;
+  font-size: 2em;
+  color: #ffbf00;
+  z-index: 1;
+  transform: rotate(-25deg);
+  background-color: rgba(0, 0, 0, 0.27);
+  padding: 0 10px;
+  margin-top: 40px;
+  border-radius: 10px;
+  }
+
