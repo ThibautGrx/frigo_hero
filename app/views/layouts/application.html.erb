@@ -3,14 +3,43 @@
   <head>
     <title>FrigoHero</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="Content-Type" content="UTF-8">
+    <meta name="Content-Language" content="fr">
+    <meta name="keywords" content="FrigoHero, partage de frigo, frigo solidaire, antigaspillage, aliments, nourriture, aide, association">
+    <meta name="Description" content="FrigoHero, donner le reste de vos aliments, devenez écoresponsable, éviter le gaspillage">
+    <meta name="Subject" content="Solution anti-gaspillage alimentaire">
+    <meta name="Author" content="#1Team @THP">
+    <meta name="Identifier-Url" content="frigohero.eu">
+    <meta name="Reply-To" content="contact.frigohero@gmail.com">
+    <meta name="Robots" content="nofollow">
+    <meta name="Category" content="environnement">
+    
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+
+    <%=favicon_link_tag "favicon.ico"%>
+
+    <% if content_for? :for_head %>
+      <%= yield :for_head %>
+    <% end %>
   </head>
 
   <body>
-    <%= yield %>
+    <div id="bg">
+      <%= image_tag  "background.jpg", class:"img-fluid" %>
+    </div>
+    <div class="container-full fill">
+      <%= render "shared/header" %>
+      <%= yield %>
+      <%= render "shared/footer" %>
+    </div>
+
+    <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
+    <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCWp88hpGHWE8OTDFxlcGR6nk0xYSC8vp8"></script>
+    <script src='//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js'
+      type='text/javascript'></script>
   </body>
 </html>

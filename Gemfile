@@ -37,6 +37,10 @@ gem 'geocoder', '~> 1.3', '>= 1.3.7'
 
 gem 'devise', "~> 4.9.2"
 
+gem 'gmaps4rails'
+
+gem 'kaminari'
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 

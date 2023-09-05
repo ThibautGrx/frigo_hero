@@ -1,4 +1,6 @@
 class Item < ApplicationRecord
+  include Filterable
+
   belongs_to :user
   has_many :interests, dependent: :destroy
   has_many :interested_users, through: :interests, source: :user

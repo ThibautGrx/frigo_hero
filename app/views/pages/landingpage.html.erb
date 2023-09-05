@@ -1,0 +1,117 @@
+<% content_for :for_head do %>
+<title>FrigoHero | Solution anti-gaspillage alimentaire</title>
+<% end %>
+
+<div class="container-fluid pr-0">
+  <div class="row justify-content-center">
+    <% flash.each do |key, value| %>
+    <div class="col-sm-10 col-6 alert alert-success mt-2">
+      <%= value %>
+    </div>
+    <% end %>
+  </div>
+
+  <div class="d-flex">
+    <div class="container lp-content">
+      <div class="row margin">
+        <div class="ml-2 mb-3 first-sentence">
+          ENSEMBLE, REDUISONS LE GASPILLAGE ALIMENTAIRE.
+        </div>
+        <div class="ml-2 second-sentence">
+          Avec FrigoHero, donner ou collecter des aliments, c'est simple et gratuit.
+        </div>
+        <div class="btn btn-success btn-lg margin-button">
+          <a href="<%=items_path%>" class="link"><i class="fa fa-search"></i> Rechercher des produits</a>
+        </div>
+        <div class="btn btn-red btn-lg margin-button">
+          <a href="<%=new_item_path%>" class="link"><i class="fa fa-map-marker"></i> Proposer des produits</a>
+        </div>
+        <div class="smsbox mt-2">
+          <div class="container">
+            <div class="row">
+              <div class="maintenance">			
+                En maintenance
+              </div>
+              <div class="col-4">
+                <%= image_tag("sms.png", class: "imagesms", alt: "sms") %>
+              </div>
+              <div class="col-8">
+                <p><span class="titlenumber">Consultez les annonces </span></p>
+              </div>
+            </div>
+            <div class="textnumber">
+              <p>Envoyez votre adresse au :<br>
+                <span class="number">+33 6 44 64 37 23</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-9 col-xl-7 d-none d-lg-block position-absolute-top-right-0 pr-0">
+      <figure class="">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1374.7 1083.6"
+          style="enable-background:new 0 0 1374.7 1083.6;" xml:space="preserve">
+          <path opacity=".05" d="
+            M 285.2,170.1
+            c -94.5,8.6 -181.2,57.4 -235.9,134.8
+            C -34.7,423.6-54.5,621.5,349,879.8
+            c 636.5,407.6,600,9.3,591.9-47.4
+            c -0.8-5.5-1.4-11.1-2-16.6
+            l -34.2-374.1
+            C 888.4,262,729.2,129.6,549.4,146
+            L 285.2,170.1z"></path>
+          <g>
+            <defs>
+              <path id="heroBlock1" d="m1374.7,0l-687.1,0l-278,279.7c-150,150.9 -148.1,395.3 4.4,543.8l0,0c140.1,136.5 272.3281,127.31362 511.4,126.5l449.3,0l0,-950z">
+              </path>
+            </defs>
+            <clipPath id="heroBlock2">
+              <use xlink:href="#heroBlock1" style="overflow:visible;"></use>
+            </clipPath>
+            <g transform="matrix(1 0 0 1 0 0)" style="clip-path:url(#heroBlock2);">
+              <!-- Apply your (750px width to 750px height) image here -->
+              <image style="overflow:visible;" width="750" height="750" xlink:href=<%=asset_path 'sharefood.jpg' %>
+                transform="matrix(2,0,0,2,100,-250)"></image>
+            </g>
+          </g>
+        </svg>
+      </figure>
+    </div>
+
+  </div>
+  <!--
+  <div class="row justify-content-center video-container">
+    <div class="col-9">
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe  class="embed-responsive-item" src="https://www.youtube.com/embed/CMN53slAPng?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+ -->
+</div>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+<script>
+  window.addEventListener("load", function () {
+    window.cookieconsent.initialise({
+      "palette": {
+        "popup": {
+          "background": "#000"
+        },
+        "button": {
+          "background": "#f1d600"
+        }
+      },
+      "content": {
+        "message": "Ce site utilise des cookies afin de s'assurer que vous puissiez en avoir la meilleure utilisation",
+        "dismiss": "Ok, j'ai compris !",
+        "link": "en savoir plus"
+      }
+    })
+  });
+</script>

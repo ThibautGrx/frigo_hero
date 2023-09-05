@@ -1,0 +1,19 @@
+<div class="d-flex flex-row">
+  <div>
+    <% if item.image.attached?%>
+    <%= image_tag  item.image, class:"smallimg" %>
+    <%else%>
+    <%= image_tag  'default-img.png', class:"mx-auto img-fluid" %>
+    <%end%>
+  </div>
+  <div class="ml-2">
+      <span class="WindowsInfoText">Description:</span>
+      <%=item.description%><br>
+      <span class="WindowsInfoText">Disponibilité:</span>
+      <%=item.date.strftime("%d/%m/%Y")%><br>
+      <span class="WindowsInfoText">Lieu:</span>
+      <%=item.address%><br>
+    <%= button_to "Détails", item_path(:id => item.id),:method => :get, :class =>"btn btn-primary btn-sm mt-3" %>
+  </div>
+</div>
+  
