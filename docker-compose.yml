@@ -1,0 +1,29 @@
+version: '3.7'
+services:
+  db:
+    image: 'postgres:latest'
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: frigo_hero
+      POSTGRES_PASSWORD: frigo_hero
+      POSTGRES_DB: frigo_hero
+    # env_file:
+    #   - ./env/postgres.env # you can also define env variables like this.
+  app:
+    environment:
+      POSTGRES_HOST: db
+      POSTGRES_USER: frigo_hero
+      POSTGRES_PASSWORD: frigo_hero
+      POSTGRES_DB: frigo_hero
+    image: frigo_hero:dev
+    build: ./ 
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/docker/app
+    depends_on:
+      - db
+
+volumes:
+  postgres:
