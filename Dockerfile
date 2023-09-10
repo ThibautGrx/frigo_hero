@@ -12,9 +12,6 @@ RUN bundle install
 
 ADD . /docker/app
 
-ARG DEFAULT_PORT 3000
+EXPOSE 3000
 
-EXPOSE ${DEFAULT_PORT}
-
-CMD [ "bundle","exec", "puma", "config.ru"] #
-# CMD ["rails","server"]
+CMD [ "RAILS_ENV=production","bundle","exec", "puma", "config.ru", "-C", "config/puma.rb" ]
