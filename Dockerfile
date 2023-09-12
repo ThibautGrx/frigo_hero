@@ -12,6 +12,8 @@ COPY Gemfile* ./
 
 RUN bundle install
 
+RUN rails assets:precompile
+
 ADD . /docker/app
 
 EXPOSE 3000
