@@ -23,7 +23,7 @@ env:
   clear:
     RAILS_SERVE_STATIC_FILES: true
     RAILS_LOG_TO_STDOUT: true
-   secret:
+  secret:
     - POSTGRES_HOST
     - POSTGRES_USER
     - POSTGRES_PASSWORD
