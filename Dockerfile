@@ -2,7 +2,17 @@ FROM ruby:3.2.0-bullseye as base
 
 ENV RAILS_ENV=production
 
-RUN apt-get update -qq && apt-get install -y build-essential apt-utils libpq-dev nodejs
+RUN apt-get update -qq && apt-get install -y build-essential apt-utils libpq-dev
+# RUN apt remove cmdtest -y
+
+# install nodejs
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+
+# install yarn
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+RUN apt update && apt install yarn -y
+
 
 WORKDIR /docker/app
 
@@ -12,9 +22,9 @@ COPY Gemfile* ./
 
 RUN bundle install
 
-RUN rails assets:precompile
-
 ADD . /docker/app
+
+RUN bundle exec rails assets:precompile
 
 EXPOSE 3000
 
