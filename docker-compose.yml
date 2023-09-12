@@ -8,6 +8,8 @@ services:
       POSTGRES_USER: frigo_hero
       POSTGRES_PASSWORD: frigo_hero
       POSTGRES_DB: frigo_hero
+      RAILS_ENV: production
+      RAILS_LOG_TO_STDOUT: true
     # env_file:
     #   - ./env/postgres.env # you can also define env variables like this.
   app:
