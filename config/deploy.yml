@@ -27,6 +27,8 @@ env:
     - POSTGRES_USER
     - POSTGRES_PASSWORD
     - POSTGRES_DB
+    - RAILS_SERVE_STATIC_FILES
+    - RAILS_LOG_TO_STDOUT
 
 #Use a different ssh user than root
 ssh:
