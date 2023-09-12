@@ -20,15 +20,14 @@ registry:
 
 # Inject ENV variables into containers (secrets come from .env).
 env:
-#   clear:
-#     DB_HOST: 192.168.0.2
+  clear:
+    RAILS_SERVE_STATIC_FILES: true
+    RAILS_LOG_TO_STDOUT: true
    secret:
     - POSTGRES_HOST
     - POSTGRES_USER
     - POSTGRES_PASSWORD
     - POSTGRES_DB
-    - RAILS_SERVE_STATIC_FILES
-    - RAILS_LOG_TO_STDOUT
 
 #Use a different ssh user than root
 ssh:
