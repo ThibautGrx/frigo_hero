@@ -50,10 +50,12 @@ accessories:
     image: 'postgres:latest'
     volumes:
       - postgres:/var/lib/postgresql/data
-    environment:
-      POSTGRES_USER: frigo_hero
-      POSTGRES_PASSWORD: frigo_hero
-      POSTGRES_DB: frigo_hero
+    env:
+      secret:
+      - POSTGRES_HOST
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
 #   redis:
 #     image: redis:7.0
 #     host: 192.168.0.2
