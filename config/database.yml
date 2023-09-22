@@ -85,5 +85,3 @@ test:
 production:
   <<: *default
   database: frigo_hero_production
-  username: frigo_hero
-  password: <%= ENV["FRIGO_HERO_DATABASE_PASSWORD"] %>
