@@ -5,6 +5,8 @@ class Item < ApplicationRecord
   has_many :interests, dependent: :destroy
   has_many :interested_users, through: :interests, source: :user
 
+  enumerize :category, in: %i[smallfridge mediumfridge largefridge]
+
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
 

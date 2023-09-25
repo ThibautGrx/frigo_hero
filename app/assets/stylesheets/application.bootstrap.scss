@@ -1,5 +1,9 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
 
+$fa-font-path: 'fontawesome-free/webfonts';
+@import 'fontawesome-free/scss/fontawesome';
+@import 'fontawesome-free/scss/solid';
+
 @import 'custom.scss';
 @import 'profile.scss';

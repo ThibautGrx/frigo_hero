@@ -1,98 +1,99 @@
-<%= favicon_link_tag 'favicon.png' %>
+<%= favicon_link_tag "favicon.png" %>
 
-<nav class="navbar navbar-expand-md navbar-light bg-light navbar-fixed-top" id="mainNav">
+<nav class="navbar navbar-expand-md navbar-light bg-light" id="mainNav">
+  <div class="container-fluid">
+    <%= link_to root_path, class:"d-block navbar-brand logo" do %>
+      <%= content_tag :span,
+    "FrigoHero",
+    class: "d-none d-sm-inline-block logo align-middle" %>
+      <%= image_tag "logo.svg", size: "50x50", alt: "logo", class: "align-middle" %>
+    <% end %>
 
-  <a class="d-none d-sm-block navbar-brand logo" href="<%=root_path%>">
-    <span class=" logo align-middle">FrigoHero</span>
-    <%=image_tag("logo.svg", size: "50x50", alt: "logo", class:"align-middle")%>
-  </a>
+    <button type="button" class="navbar-toggler navbar-toggler-right" data-bs-toggle="collapse" data-bs-target="#navbarResponsive1" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <a class="d-block d-sm-none navbar-brand logo" href="<%=root_path%>">
-    <%=image_tag("logo.svg", size: "50x50", alt: "logo", class:"align-middle")%>
-  </a>
-  
-  <button type="button" class="navbar-toggler navbar-toggler-right" data-toggle="collapse" data-target="#navbarResponsive1"
-    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive1">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item" data-bs-toggle="tooltip" data-placement="right" title="Dashboard" >
+          <%= link_to items_path, class:"nav-link" do %>
+            <i class="fa fa-search"></i>
+            <span class="nav-link-text">Trouver un frigo</span>
+          <% end %>
+        </li>
+      </ul>
 
-  <div class="collapse navbar-collapse" id="navbarResponsive1">
+      <% if user_signed_in? %>
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item" data-bs-toggle="tooltip" data-placement="right" title="Dashboard">
+            <%= link_to new_item_path, class: "nav-link" do %>
+              <i class="fa fa-map-marker"></i>
+              <span class="nav-link-text">Proposer</span>
+            <% end %>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item" data-bs-toggle="tooltip" data-placement="right" title="Dashboard">
+            <%= link_to profile_path(current_user.id),class:"nav-link" do %>
+              <i class="fa fa-user"></i>
+              <span class="nav-link-text">Mon profil</span>
+            <% end %>
+          </li>
+          <li class="nav-item" data-bs-toggle="tooltip" data-placement="right" title="Charts">
+            <%= link_to destroy_user_session_path, method: :delete, class:"nav-link" do %>
+              <i class="fa fa-sign-out"></i>
+              <span class="nav-link-text">Se deconnecter</span>
+            <% end %>
+          </li>
+        </ul>
+      <% else %>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <%= link_to root_path, class:"nav-link" do %>
+              <i class="fa fa-home"></i>
+              <span class="nav-link-text">Accueil</span>
+            <% end %>
+          </li>
 
-    <ul class="navbar-nav me-auto">
-      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-        <a class="nav-link" href="/items">
+          <li class="nav-item">
+            <%= link_to new_user_session_path, class: "nav-link" do %>
+              <i class="fa fa-user"></i>
+              <span class="nav-link-text">Se connecter</span>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to new_user_registration_path, class:"nav-link" do %>
+              <i class="fas fa-sign-in-alt"></i>
+              <span class="nav-link-text">S'inscrire</span>
+            <% end %>
+          </li>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+</nav>
+
+<% if (controller_name == "items") && (action_name == "index") %>
+  <nav class="navbar navbar-expand-md navbar-dark bg-secondary">
+    <div class="container-fluid justify-content-end">
+      <% if (controller_name=="items") && (action_name=="index") %>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive2" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" >
           <i class="fa fa-search"></i>
-          <span class="nav-link-text">Trouver un frigo</span>
-        </a>
-      </li>
-    </ul>
-
-    <% if user_signed_in? %>
-    <ul class="navbar-nav me-auto">
-      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-        <a class="nav-link" href="/items/new">
-          <i class="fa fa-map-marker"></i>
-          <span class="nav-link-text">Proposer</span>
-        </a>
-      </li>
-    </ul>
-    <ul class="navbar-nav ms-auto">
-      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-        <%= link_to profile_path(current_user.id),class:"nav-link" do %>
-          <i class="fa fa-user"></i>
-          <span class="nav-link-text">Mon profil</span>
-        <%end%>
-      </li>
-      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-        <%= link_to destroy_user_session_path, method: :delete, class:"nav-link" do %>
-          <i class="fa fa-sign-out"></i>
-          <span class="nav-link-text">Se
-            deconnecter</span>
-        <%end%>
-      </li>
-    </ul>
-    <% else %>
-    <ul class="navbar-nav ms-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="/">
-          <i class="fa fa-home"></i>
-          <span class="nav-link-text">Accueil</a></span>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="<%=new_user_session_path%>">
-          <i class="fa fa-user"></i>
-          <span class="nav-link-text">Se connecter</a></span>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="<%=new_user_registration_path%>">
-          <i class="fa fa-sign-in"></i>
-          <span class="nav-link-text"> S'inscrire</a></span>
-      </li>
-    </ul>
-    <% end %>
-  </div>
-</nav>
-
-<%if (controller_name=="items") && (action_name=="index")%>
-<nav class="navbar navbar-expand-md navbar-dark bg-secondary">
-  <%if (controller_name=="items") && (action_name=="index")%>
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive2"
-    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-    <i class="fa fa-search"></i>
-  </button>
-  <%end%>
-  <div class="collapse navbar-collapse d-flex flex-row justify-content-between" id="navbarResponsive2">
-    <ul class="navbar-nav me-auto">
-      <li class="nav-item active">
-        <div class="btn btn-red nav-btn" id="buttonmap">Carte</div>
-        <div class="btn btn-red nav-btn" id="buttontable">Liste</div>
-      </li>
-    </ul>
-    <%= form_tag(items_path, :method => "get", id: "search-form", class:"d-flex justify-content-around") do %>
-      <%= select_tag(:category, options_for_select([['Categorie',nil],['Petit frigo', "smallfridge"], ['Moyen frigo', 'mediumfridge'],['Grand Frigo', 'largefridge']]), class:"form-select me-sm-2") %>
-      <%= text_field_tag :address, params[:search], placeholder: "Addresse", class: "form-control me-sm-2", id:"user_input_autocomplete_address" %>
-      <%= submit_tag "rechercher", :name => nil,class:"btn btn-red nav-btn" %>
-    <% end %>
-  </div>
-</nav>
-<%end%>
+        </button>
+      <% end %>
+      <div class="collapse navbar-collapse" id="navbarResponsive2">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item active">
+            <div class="btn btn-red nav-btn" id="buttonmap">Carte</div>
+            <div class="btn btn-red nav-btn" id="buttontable">Liste</div>
+          </li>
+        </ul>
+        <%= form_tag(items_path, :method => "get", id: "search-form", class:"d-flex justify-content-around") do %>
+          <%= select_tag(:category, options_for_select(Item.category.options.unshift(["Categorie", nil])), class: "form-select me-sm-2") %>
+          <%= text_field_tag( :address, params[:search], placeholder: "Addresse", class: "form-control me-sm-2",id: "user_input_autocomplete_address" )%>
+          <%= submit_tag "rechercher", name: nil, class: "btn btn-red nav-btn" %>
+        <% end %>
+      </div>
+    </div>
+  </nav>
+<% end %>
