@@ -1,48 +1,56 @@
 <% content_for :for_head do %>
-<title>FrigoHero | Solution anti-gaspillage alimentaire</title>
+  <title>FrigoHero | Solution anti-gaspillage alimentaire</title>
 <% end %>
 
-<div class="container-fluid pr-0">
+<div class="container-fluid px-0">
   <div class="row justify-content-center">
     <% flash.each do |key, value| %>
-    <div class="col-sm-10 col-6 alert alert-success mt-2">
-      <%= value %>
-    </div>
+      <div class="col-sm-10 col-6 alert alert-success mt-2">
+        <%= value %>
+      </div>
     <% end %>
   </div>
 
   <div class="d-flex">
-    <div class="container lp-content">
-      <div class="row margin">
-        <div class="ms-2 mb-3 first-sentence">
+    <div class="container lp-content d-flex flex-column justify-content-center align-items-center">
+      <div>
+        <div class="ms-2 mb-3 first-sentence text-center">
           ENSEMBLE, REDUISONS LE GASPILLAGE ALIMENTAIRE.
         </div>
-        <div class="ms-2 second-sentence">
+        <div class="ms-2 second-sentence text-center">
           Avec FrigoHero, donner ou collecter des aliments, c'est simple et gratuit.
         </div>
-        <div class="btn btn-success btn-lg margin-button">
-          <a href="<%=items_path%>" class="link"><i class="fa fa-search"></i> Rechercher des produits</a>
+        <div class="d-flex justify-content-around my-5">
+          <div class="btn btn-success btn-lg">
+            <%= link_to items_path, class:"link" do %>
+              <i class="fa fa-search" class="link"></i> Rechercher des produits
+            <%end%>
+          </div>
+
+          <div class="btn btn-red btn-lg">
+            <%= link_to new_item_path, class:"link" do %>
+              <i class="fa fa-map-marker"></i> Proposer des produits
+            <%end%>
+          </div>
         </div>
-        <div class="btn btn-red btn-lg margin-button">
-          <a href="<%=new_item_path%>" class="link"><i class="fa fa-map-marker"></i> Proposer des produits</a>
-        </div>
-        <div class="smsbox mt-2">
-          <div class="container">
-            <div class="row">
-              <div class="maintenance">			
-                En maintenance
-              </div>
-              <div class="col-4">
-                <%= image_tag("sms.png", class: "imagesms", alt: "sms") %>
-              </div>
-              <div class="col-8">
-                <p><span class="titlenumber">Consultez les annonces </span></p>
-              </div>
+      </div>
+
+      <div class="smsbox mt-2">
+        <div class="container">
+          <div class="row">
+            <div class="maintenance">
+              En maintenance
             </div>
-            <div class="textnumber">
-              <p>Envoyez votre adresse au :<br>
-                <span class="number">+33 6 44 64 37 23</span></p>
+            <div class="col-4">
+              <%= image_tag("sms.png", class: "imagesms", alt: "sms") %>
             </div>
+            <div class="col-8">
+              <p><span class="titlenumber">Consultez les annonces </span></p>
+            </div>
+          </div>
+          <div class="textnumber">
+            <p>Envoyez votre adresse au :<br>
+              <span class="number">+33 6 44 64 37 23</span></p>
           </div>
         </div>
       </div>
@@ -80,38 +88,4 @@
     </div>
 
   </div>
-  <!--
-  <div class="row justify-content-center video-container">
-    <div class="col-9">
-      <div class="embed-responsive embed-responsive-16by9">
-        <iframe  class="embed-responsive-item" src="https://www.youtube.com/embed/CMN53slAPng?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-      </div>
-    </div>
-  </div>
- -->
 </div>
-
-
-
-
-<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
-<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
-<script>
-  window.addEventListener("load", function () {
-    window.cookieconsent.initialise({
-      "palette": {
-        "popup": {
-          "background": "#000"
-        },
-        "button": {
-          "background": "#f1d600"
-        }
-      },
-      "content": {
-        "message": "Ce site utilise des cookies afin de s'assurer que vous puissiez en avoir la meilleure utilisation",
-        "dismiss": "Ok, j'ai compris !",
-        "link": "en savoir plus"
-      }
-    })
-  });
-</script>

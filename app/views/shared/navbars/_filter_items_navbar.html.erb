@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-secondary">
+  <div class="container-fluid justify-content-end">
+    <% if (controller_name=="items") && (action_name=="index") %>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive2" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" >
+        <i class="fa fa-search"></i>
+      </button>
+    <% end %>
+    <div class="collapse navbar-collapse" id="navbarResponsive2">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item active">
+          <div class="btn btn-red nav-btn" id="buttonmap">Carte</div>
+          <div class="btn btn-red nav-btn" id="buttontable">Liste</div>
+        </li>
+      </ul>
+      <%= form_tag(items_path, :method => "get", id: "search-form", class:"d-flex justify-content-around") do %>
+        <%= select_tag(:category, options_for_select(Item.category.options.unshift(["Categorie", nil])), class: "form-select me-sm-2") %>
+        <%= text_field_tag( :address, params[:search], placeholder: "Addresse", class: "form-control me-sm-2",id: "user_input_autocomplete_address" )%>
+        <%= submit_tag "rechercher", name: nil, class: "btn btn-red nav-btn" %>
+      <% end %>
+    </div>
+  </div>
+</nav>

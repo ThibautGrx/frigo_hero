@@ -2,40 +2,36 @@
   <div class="row justify-content-center">
     <div class="card main-card col-lg-12">
       <div class="card-header">
-        <div class="row row align-items-center justify-content-between">
-          <span class="indented">LISTE DES PRODUITS AUTOUR DE
-            <%if params[:address]&&params[:address]!=""%>
-            "
-            <%=params[:address]%>"
-            <%else%>
-              VOUS
-            <%end%>
-          </span>
-        </div>
+        <span>LISTE DES PRODUITS AUTOUR DE
+          <%if params[:address]&&params[:address]!=""%>
+            <%=params[:address]%>
+          <%else%>
+            VOUS
+          <%end%>
+        </span>
       </div>
       <div class="card-body">
         <div class="list-group">
-
           <%@itemspag.each do |item|%>
-          <button class="list-group-item list-group-item-action button_list" href="<%=item_path(:id => item.id)%>">
-            <div class="row justify-content-end">
-              <div class="col-5 col-sm-3 col-md-2">
-                <%if item.image.attached? %>
-                  <%=link_to  image_tag(item.image, class:"img-fluid"), item_path(:id => item.id)%>
-                <%else item.image %>
-                  <%=link_to image_tag('default-img'),item_path(:id => item.id)%>
-                <%end %>
-              </div>
-              <div class="col-7 col-sm-9 col-md-5">
-                <p><span class="itemdescriptionindex">
-                  <%=item.description%></span><br>
-                  <i class="fa fa-th-large"></i>
-                  <%case item.category%>
-                  <%when "smallfridge"%>
+            <button class="list-group-item list-group-item-action button_list" href="<%=item_path(:id => item.id)%>">
+              <div class="row justify-content-end">
+                <div class="col-5 col-sm-3 col-md-2">
+                  <%if item.image.attached? %>
+                    <%=link_to  image_tag(item.image, class:"img-fluid"), item_path(:id => item.id)%>
+                  <%else item.image %>
+                    <%=link_to image_tag('default-img',class:"w-100"),item_path(:id => item.id)%>
+                  <%end %>
+                </div>
+                <div class="col-7 col-sm-9 col-md-5">
+                  <p><span class="itemdescriptionindex">
+                      <%=item.description%></span><br>
+                    <i class="fa fa-th-large"></i>
+                    <%case item.category%>
+                    <%when "smallfridge"%>
                     Petit frigo
-                  <%when "mediumfridge"%>
+                    <%when "mediumfridge"%>
                     Moyen frigo
-                  <%when "largefridge"%>
+                    <%when "largefridge"%>
                     Grand frigo
                   <%end%><br>
                 </p>
@@ -53,16 +49,16 @@
               </div>
             </div>
           </button>
-          <%end%>
-        </div>
-      </div>
-      <div class="d-flex d-row justify-content-center">
-        <%= paginate @itemspag %>
-      </div>
-      <div class="d-flex d-row justify-content-center">
-        <%= page_entries_info @itemspag %>
+        <%end%>
       </div>
     </div>
+    <div class="d-flex d-row justify-content-center">
+      <%= paginate @itemspag %>
+    </div>
+    <div class="d-flex d-row justify-content-center">
+      <%= page_entries_info @itemspag %>
+    </div>
   </div>
+</div>
 </div>
 </div>

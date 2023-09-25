@@ -1,0 +1,72 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light" id="mainNav">
+  <div class="container-fluid">
+    <%= link_to root_path, class:"d-block navbar-brand logo" do %>
+      <%= content_tag :span,
+    "FrigoHero",
+    class: "d-none d-sm-inline-block logo align-middle" %>
+      <%= image_tag "logo.svg", size: "50x50", alt: "logo", class: "align-middle" %>
+    <% end %>
+
+    <button type="button" class="navbar-toggler navbar-toggler-right" data-bs-toggle="collapse" data-bs-target="#navbarResponsive1" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarResponsive1">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item" data-bs-toggle="tooltip" data-placement="right" title="Dashboard" >
+          <%= link_to items_path, class:"nav-link" do %>
+            <i class="fa fa-search"></i>
+            <span class="nav-link-text">Trouver un frigo</span>
+          <% end %>
+        </li>
+      </ul>
+
+      <% if user_signed_in? %>
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item" data-bs-toggle="tooltip" data-placement="right" title="Dashboard">
+            <%= link_to new_item_path, class: "nav-link" do %>
+              <i class="fa fa-map-marker"></i>
+              <span class="nav-link-text">Proposer</span>
+            <% end %>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item" data-bs-toggle="tooltip" data-placement="right" title="Dashboard">
+            <%= link_to profile_path(current_user.id),class:"nav-link" do %>
+              <i class="fa fa-user"></i>
+              <span class="nav-link-text">Mon profil</span>
+            <% end %>
+          </li>
+          <li class="nav-item" data-bs-toggle="tooltip" data-placement="right" title="Charts">
+            <%= link_to destroy_user_session_path, method: :delete, class:"nav-link" do %>
+              <i class="fa fa-sign-out"></i>
+              <span class="nav-link-text">Se deconnecter</span>
+            <% end %>
+          </li>
+        </ul>
+      <% else %>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <%= link_to root_path, class:"nav-link" do %>
+              <i class="fa fa-home"></i>
+              <span class="nav-link-text">Accueil</span>
+            <% end %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to new_user_session_path, class: "nav-link" do %>
+              <i class="fa fa-user"></i>
+              <span class="nav-link-text">Se connecter</span>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to new_user_registration_path, class:"nav-link" do %>
+              <i class="fas fa-sign-in-alt"></i>
+              <span class="nav-link-text">S'inscrire</span>
+            <% end %>
+          </li>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+</nav>
