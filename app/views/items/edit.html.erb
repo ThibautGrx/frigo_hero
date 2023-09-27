@@ -1,10 +1,64 @@
-<h1>Editing item</h1>
+<% content_for :for_head do %>
+<title>FrigoHero | Annonce
+  <%=@item.description%>
+</title>
+<% end %>
 
-<%= render "form", item: @item %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="card main-card col-lg-10">
+      <div class="card-header">
+        <div class="row row align-items-center justify-content-between">
+          <span class="indented">Nouveau produit</span>
+          <%= button_to "Retour", items_url,:method => :get, :class =>"btn btn-secondary return-button" %>
+        </div>
+      </div>
+      <div class="card-body">
+        <%= form_for @item do |f| %>
+        <%= render 'shared/error_messages' %>
+        <div class="row">
+          <div class="col-sm-7">
+            <div class="card ">
+              <div class="card-header">
+                Description
+              </div>
+              <div class="card-body">
+                <%= f.text_area(:description, :placeholder => 'ex : 2 Bananes / une danette choco / etc...', class: "form-control description") %>
+              </div>
+            </div>
+            <div class="adress-container item-place">
+              <i class="fa fa-map-marker"></i>
+              <label for="place">Lieu de retrait</label><br>
+              <%= f.text_field(:place, :placeholder => '18 rue de rivoli 75001', class: "form-control", id:"user_input_autocomplete_address") %>
+            </div>
+          </div>
+          <div class="col-sm-5">
+            <div>
+              <p>Cliquez sur l'image pour la modifier</p>
+              <%if @item.image.attached?%>
+                <%= image_tag @item.image, id:"addphoto"%>
+              <%end%>
+              <%= f.file_field(:image, id:"addphotobutton") %>
 
-<br>
 
-<div>
-  <%= link_to "Show this item", @item %> |
-  <%= link_to "Back to items", items_path %>
+            </div>
+            <div class="profil-info-container">
+              <i class="fa fa-th-large"></i> Catégorie
+              <%= f.select(:category, options_for_select([['Petit frigo', "smallfridge"], ['Moyen frigo', 'mediumfridge'],['Grand Frigo', 'largefridge']]), class:"form-control mr-sm-2")%>
+            </div>
+            <div>
+              <p><i class="fa fa-clock"></i> Disponible jusqu'au :
+                <%= f.datetime_field(:date, class: "form-control") %>
+              </p>
+            </div>
+            <div class="interest-button-container">
+              <%= f.button :Valider!, class: "btn btn-success interest-button" %>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
