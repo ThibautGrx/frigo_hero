@@ -1,17 +1,42 @@
-<%= form_with(model: item) do |form| %>
-  <% if item.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(item.errors.count, "error") %> prohibited this item from being saved:</h2>
-
-      <ul>
-        <% item.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+<%= form_for @item do |f| %>
+  <%= render 'shared/error_messages' %>
+  <div class="d-flex row">
+    <div class="col-sm-7">
+      <div class="mb-3">
+        <%= f.label(:description, 'Description', class:"form-label" )%>
+        <%= f.text_area(:description, :placeholder => '2 Bananes / une danette choco / etc...', class: "form-control description") %>
+      </div>
+      <div class="mb-3">
+        <i class="fa fa-map-marker"></i>
+        <label for="place">Lieu de retrait</label><br>
+        <%= f.text_field(:address, :placeholder => '18 rue de rivoli 75001', class: "form-control", id:"user_input_autocomplete_address") %>
+      </div>
+      <div class="mb-3">
+        <%= f.label :category, class:"form-label" do %>
+          <i class="fa fa-th-large"></i> Catégorie
+        <%end%>
+        <%= f.select :category, options_for_select(f.object.class.category.options),{}, class:"form-control"%>
+      </div>
+      <div class="mb-3">
+        <%= f.label :date, class:"form-label" do %>
+          <i class="fa fa-clock"></i> Disponible jusqu'au :
+        <%end%>
+        <%= f.datetime_field(:date, class: "form-control") %>
+      </div>
+      <div>
+        <%= f.submit :Valider, class: "btn btn-success interest-button" %>
+      </div>
     </div>
-  <% end %>
-
-  <div>
-    <%= form.submit %>
+    <div class="col-sm-5">
+      <figure class="figure p-3">
+        <%if @item.image.attached?%>
+          <%= image_tag @item.image, id:"addphoto", class:"w-100"%>
+          <figcaption class="figure-caption">Cliquez sur l'image pour la modifier</figcaption>
+        <%else%>
+          <%= image_tag "addphoto.png", id:"addphoto", class:"w-100"%>
+        <%end%>
+        <%= f.file_field(:image, id:"addphotobutton", class: 'd-none') %>
+      </div>
+    </div>
   </div>
 <% end %>
