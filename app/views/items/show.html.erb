@@ -58,22 +58,21 @@
             </div>
             <div class="interest-button-container">
               <% if current_user == @item.user%>
-
                 <%= link_to "Modier", edit_item_path(@item), method: :get, class: "btn btn-warning edit-button" %>
                 <%= link_to "Supprimer", item_path(@item), method: :delete, class: "btn btn-danger edit-button" %>
               <%else%>
-                <%unless @item.interested_users.where(user: current_user)  %>
-                  <%= link_to interest_path, method: :post, class: "btn btn-success interest-button") do %>
-                    <i class="fa fa-handshake-o"></i><br>
-                    Ça m'intéresse !
-                  <% end %>
-                <%else%>
+                <%if @item.interested_users.where(user: current_user)  %>
                   <p>Contact:<br>
                     Email: <%=mail_to @item.user.email%><br>
                     Téléphone:
                     <%if @item.user.profile %>
                       <%=@item.user.profile.phone || 'non renseigné' %>
                     <%end%>
+                <%else%>
+                  <%= link_to interest_path, method: :post, class: "btn btn-success interest-button" do %>
+                    <i class="fa fa-handshake-o"></i><br>
+                    Ça m'intéresse !
+                  <% end %>
                   </p>
                 <%end%>
               <%end%>
