@@ -19,17 +19,17 @@
             <span class="nav-link-text">Trouver un frigo</span>
           <% end %>
         </li>
-      </ul>
-
-      <% if user_signed_in? %>
-        <ul class="navbar-nav me-auto">
+        <% if user_signed_in? %>
           <li class="nav-item" data-bs-toggle="tooltip" data-placement="right" title="Dashboard">
             <%= link_to new_item_path, class: "nav-link" do %>
               <i class="fa fa-map-marker"></i>
               <span class="nav-link-text">Proposer</span>
             <% end %>
           </li>
-        </ul>
+        <% end %>
+      </ul>
+
+      <% if user_signed_in? %>
         <ul class="navbar-nav ms-auto">
           <li class="nav-item" data-bs-toggle="tooltip" data-placement="right" title="Dashboard">
             <%= link_to profile_path(current_user.id),class:"nav-link" do %>
