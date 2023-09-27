@@ -1,10 +1,99 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :for_head do %>
+  <title>FrigoHero | Annonce
+    <%=@item.description%>
+  </title>
+<% end %>
 
-<%= render @item %>
+<div class="container">
+  <div class="d-flex justify-content-center">
+    <div class="card main-card col-lg-10">
+      <div class="card-header">
+        <div class="d-flex align-items-center justify-content-between">
+          <span class="indented">Annonce # <%=@item.id%></span>
+          <%= link_to "Retour", items_url, class:"btn btn-secondary return-button" %>
+        </div>
+      </div>
+      <div class="card-body">
+        <%= render "shared/alert" %>
+        <div class="row">
+          <div class="col-sm-7">
+            <div class="card ">
+              <div class="card-header">
+                Description
+              </div>
+              <div class="card-body">
+                <%=@item.description%>
+              </div>
+            </div>
+            <div class="map-responsive">
+              <div id="mapshow" style='map-responsive-inside'></div>
+            </div>
+            <div class="adress-container item-place">
+              <i class="fa fa-map-marker"></i>
+              <%= @item.address %>
+            </div>
+          </div>
+          <div class="col-sm-5">
+            <% if @item.image.attached?%>
+              <%= image_tag  @item.image, class:"img-fluid w-100" %>
+            <%else%>
+              <%= image_tag  'default-img.png', class:"mx-auto img-fluid w-100" %>
+            <%end%>
+            <div class="profil-info-container">
+              <p><i class="fa fa-th-large"></i>
+                <%= @item.category.text %><br>
+                <i class="fa fa-plus-square"></i>
+                <%= time_tag(@item.created_at) %><br>
+                <i class="fa fa-user"></i>
+                <%= @item.user.username %><br>
+                <i class="fa fa-map"></i>
+                <%=(Geocoder::Calculations.distance_between([request.location.latitude,request.location.longitude ], [@item.latitude,@item.longitude])* 1.60934).round(2)%>
+                km
+              </p>
+            </div>
+            <div>
+              <p><i class="fa fa-clock"></i> Disponible jusqu'au :
+                <%=time_tag(@item.date)%>
+              </p>
+            </div>
+            <div class="interest-button-container">
+              <% if current_user == @item.user%>
 
-<div>
-  <%= link_to "Edit this item", edit_item_path(@item) %> |
-  <%= link_to "Back to items", items_path %>
-
-  <%= button_to "Destroy this item", @item, method: :delete %>
+                <%= link_to "Modier", edit_item_path(@item), method: :get, class: "btn btn-warning edit-button" %>
+                <%= link_to "Supprimer", item_path(@item), method: :delete, class: "btn btn-danger edit-button" %>
+              <%else%>
+                <%unless @item.interested_users.where(user: current_user)  %>
+                  <%= link_to interest_path, method: :post, class: "btn btn-success interest-button") do %>
+                    <i class="fa fa-handshake-o"></i><br>
+                    Ça m'intéresse !
+                  <% end %>
+                <%else%>
+                  <p>Contact:<br>
+                    Email: <%=mail_to @item.user.email%><br>
+                    Téléphone:
+                    <%if @item.user.profile %>
+                      <%=@item.user.profile.phone || 'non renseigné' %>
+                    <%end%>
+                  </p>
+                <%end%>
+              <%end%>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+</div>
+
+<script type="text/javascript">
+  var value = [{
+    "lat": <%=@item.latitude%>,
+    "lng": <%=@item.longitude%>,
+    "picture": {
+      url: "https://hkdigital.fr/logopointer2.png",
+      width: 50,
+      height: 40
+    },
+  }]
+</script>
