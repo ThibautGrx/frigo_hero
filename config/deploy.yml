@@ -4,10 +4,6 @@ service: frigo_hero
 # Name of the container image.
 image: tibg/frigo_hero
 
-builder:
-  dockerfile: "../Dockerfile.prod"
-  context: ".."
-
 # Deploy to these servers.
 servers:
   - 213.32.89.32
@@ -40,6 +36,7 @@ ssh:
 # Configure builder setup.
 builder:
   multiarch: false
+  dockerfile: './Dockerfile.prod'
 #   args:
 #     RUBY_VERSION: 3.2.0
 #   secrets:
