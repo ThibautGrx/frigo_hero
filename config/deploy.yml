@@ -44,7 +44,8 @@ builder:
 #   remote:
 #     arch: amd64
 #     host: ssh://app@192.168.0.1
-
+volumes:
+  - "storage:/docker/app/storage"
 # Use accessory services (secrets come from .env).
 accessories:
   db:
