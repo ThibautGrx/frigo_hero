@@ -4,12 +4,12 @@ Geocoder.configure(
   lookup: :google, # name of geocoding service (symbol)
   ip_lookup: :ipinfo_io,
   use_https: true, # name of IP address geocoding service (symbol)
-  # google: {
-  #   api_key: Rails.application.credentials.geoloc[:GEO_KEY]
-  # },
-  # ipinfo_io: {
-  #   api_key: Rails.application.credentials.geoloc[:GEO_KEY_IP]
-  # }
+  google: {
+    api_key: ENV['GOOGLE_GEOCODING_API_KEY']
+  },
+  ipinfo_io: {
+    api_key: ENV['IPINFO_GEOCODING_API_KEY']
+  },
   # language: :en,              # ISO-639 language code
   # use HTTPS for lookup requests? (if supported)
   # http_proxy: nil,            # HTTP proxy server (user:pass@host:port)
