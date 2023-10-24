@@ -1,4 +1,9 @@
-document.addEventListener("turbo:load", initItemsView);
+document.addEventListener("turbo:load", function () {
+  const itemsContainer = document.querySelector(".container.items");
+  if (itemsContainer != undefined){
+    initItemsView();
+  }
+});
 
 function initItemsView() {
   const mapViewButton = document.getElementById("buttonmap");
