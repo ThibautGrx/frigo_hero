@@ -38,6 +38,8 @@ gem 'geocoder', '~> 1.3', '>= 1.3.7'
 gem 'devise', "~> 4.9.2"
 gem 'devise-i18n'
 
+gem 'dotenv-rails', groups: [:development, :test]
+
 gem 'gmaps4rails'
 
 gem 'kaminari'
