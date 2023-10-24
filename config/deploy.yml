@@ -28,6 +28,10 @@ env:
     - POSTGRES_USER
     - POSTGRES_PASSWORD
     - POSTGRES_DB
+    - GMAIL_USERNAME
+    - GMAIL_PASSWORD
+    - GOOGLE_GEOCODING_API_KEY
+    - IPINFO_GEOCODING_API_KEY
 
 #Use a different ssh user than root
 ssh:
