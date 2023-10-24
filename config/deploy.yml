@@ -72,6 +72,18 @@ traefik:
   args:
     accesslog: true
     accesslog.format: json
+  #   entrypoints.http.address: 80
+  #   entrypoints.https.address: 443
+  #   entrypoints.http.http.redirections.entryPoint.to: https
+  #   entrypoints.http.http.redirections.entryPoint.scheme: https
+  #   entrypoints.http.http.redirections.entrypoint.permanent: true
+  #   certificatesresolvers.letsencrypt.acme.tlschallenge: true
+  #   certificatesresolvers.letsencrypt.acme.email: devwebtg@gmail.com
+  #   certificatesresolvers.letsencrypt.acme.storage: /letsencrypt/acme.json
+
+  # volumes:
+  #     - ${VOLUME_PATH}letsencrypt:/letsencrypt
+  #     - /var/run/docker.sock:/var/run/docker.sock:ro
 
 # Configure a custom healthcheck (default is /up on port 3000)
 # healthcheck:
