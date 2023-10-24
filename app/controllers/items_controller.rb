@@ -10,7 +10,7 @@ class ItemsController < ApplicationController
       marker.lng item.longitude
       marker.infowindow render_to_string(partial: "/items/template", locals: { item: item })
       marker.json(id: item.id)
-      marker.picture("url" => "https://hkdigital.fr/logopointer2.png", "width" => 52, "height" => 40)
+      # marker.picture("url" => ActionController::Base.helpers.asset_url('logopointer.png'), "width" => 52, "height" => 40)
     end
   end
 
@@ -42,14 +42,14 @@ class ItemsController < ApplicationController
     if @item.update(item_params)
       redirect_to item_url(@item), notice: "L'annonce a bien été modifiée"
     else
-      render :edit, status: :unprocessable_entity 
+      render :edit, status: :unprocessable_entity
     end
   end
 
   # DELETE /items/1
   def destroy
     @item.destroy
-    redirect_to items_url, notice: "L'annonce a bien été supprimée." 
+    redirect_to items_url, notice: "L'annonce a bien été supprimée."
   end
 
   def interest

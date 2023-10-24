@@ -1,34 +1,51 @@
-document.addEventListener("turbo:load",function(){
-  document.getElementById("buttonmap").addEventListener('click', function () {
-    handler = Gmaps.build('Google');
-    handler.buildMap({
+document.addEventListener("turbo:load", initItemsView);
+
+function initItemsView() {
+  const mapViewButton = document.getElementById("buttonmap");
+  const mapView = document.getElementById("map");
+  const listViewButton = document.getElementById("buttontable");
+  const listView = document.getElementById("table");
+  const items = document.querySelectorAll(".button-list");
+
+  function onButtonMapClick() {
+    buildMap();
+    fadeOut(listView);
+    fadeIn(mapView);
+  }
+
+  function onButtonListClick() {
+    fadeOut(mapView);
+    fadeIn(listView);
+  }
+
+  function buildMap() {
+    handler = Gmaps.build("Google");
+    handler.buildMap(
+      {
         provider: {
           disableDefaultUI: true,
-          zoomControl: true
+          zoomControl: true,
         },
         internal: {
-          id: 'map'
-        }
+          id: "map",
+        },
       },
-      function(){
+      function () {
         markers = handler.addMarkers(value);
         handler.bounds.extendWith(markers);
         handler.fitMapToBounds();
       }
     );
-    document.getElementById("table").fadeOut("slow");
-    document.getElementById("map").fadeIn("slow");
-  });
+  }
 
-  document.getElementById("buttontable").addEventListener('click', function () {
-  document.getElementById("map").fadeOut("slow");
-  document.getElementById("table").fadeIn("slow");
-  });
+  function goToItem() {
+    Turbo.visit(this.dataset.itemUrl);
+  }
 
-  document.querySelector('.button_list').addEventListener('click',  function() {
-      window.location = $(this).find('a').attr('href');
-  })
-  document.querySelector('.button_list').addEventListener("mouseover", function() {
-      $(this).toggleClass('hover');
+  listViewButton.addEventListener("click", onButtonListClick);
+  mapViewButton.addEventListener("click", onButtonMapClick);
+
+  items.forEach((item) => {
+    item.addEventListener("click", goToItem);
   });
-});
+}
