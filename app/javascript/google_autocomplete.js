@@ -1,9 +1,6 @@
-function initializeAutocomplete(id) {
-    new google.maps.places.Autocomplete(document.getElementById(id), { types: ['geocode'] });
-}
-
-document.addEventListener('turbolinks:load', function() {
-  document.getElementById('user_input_autocomplete_address').addEventListener('click', function(){
-    initializeAutocomplete('user_input_autocomplete_address')
-  });
+document.addEventListener('turbo:load', function() {
+  autocompleteInput = document.getElementById('user_input_autocomplete_address')
+  if (autocompleteInput != undefined){
+    new google.maps.places.Autocomplete(document.getElementById('user_input_autocomplete_address'), { types: ['geocode'] })
+  }
 });
