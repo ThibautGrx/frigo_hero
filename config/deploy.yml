@@ -6,7 +6,17 @@ image: tibg/frigo_hero
 
 # Deploy to these servers.
 servers:
-  - 213.32.89.32
+  web:
+    hosts:
+      - 213.32.89.32
+    labels:
+      traefik.http.routers.frigo_hero.rule: Host(`frigohero.eu`)
+      traefik.http.routers.frigo_hero_secure.entrypoints: websecure
+      traefik.http.routers.frigo_hero_secure.rule: Host(`frigohero.eu`)
+      traefik.http.routers.frigo_hero_secure.tls: true
+      traefik.http.routers.frigo_hero_secure.tls.certresolver: letsencrypt
+    options:
+      network: "private"
 
 # Credentials for your image host.
 registry:
@@ -74,20 +84,19 @@ accessories:
 # Configure custom arguments for Traefik
 traefik:
   args:
-    accesslog: true
-    accesslog.format: json
-  #   entrypoints.http.address: 80
-  #   entrypoints.https.address: 443
-  #   entrypoints.http.http.redirections.entryPoint.to: https
-  #   entrypoints.http.http.redirections.entryPoint.scheme: https
-  #   entrypoints.http.http.redirections.entrypoint.permanent: true
-  #   certificatesresolvers.letsencrypt.acme.tlschallenge: true
-  #   certificatesresolvers.letsencrypt.acme.email: devwebtg@gmail.com
-  #   certificatesresolvers.letsencrypt.acme.storage: /letsencrypt/acme.json
+    entrypoints.web.address: ':80'
+    entrypoints.websecure.address: ':443'
+    certificatesresolvers.letsencrypt.acme.httpchallenge: true
+    certificatesresolvers.letsencrypt.acme.httpchallenge.entrypoint: web
+    certificatesresolvers.letsencrypt.acme.email: devwebtg@gmail.com
+    certificatesresolvers.letsencrypt.acme.storage: /letsencrypt/acme.json
 
-  # volumes:
-  #     - ${VOLUME_PATH}letsencrypt:/letsencrypt
-  #     - /var/run/docker.sock:/var/run/docker.sock:ro
+  options:
+    publish:
+      - "443:443"
+    volume:
+      - letsencrypt:/letsencrypt
+    network: "private"
 
 # Configure a custom healthcheck (default is /up on port 3000)
 # healthcheck:
