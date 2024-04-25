@@ -10,9 +10,9 @@ servers:
     hosts:
       - 213.32.89.32
     labels:
-      traefik.http.routers.frigo_hero.rule: Host(`frigohero.eu`)
+      traefik.http.routers.frigo_hero.rule: Host(`www.frigohero.eu`)
       traefik.http.routers.frigo_hero_secure.entrypoints: websecure
-      traefik.http.routers.frigo_hero_secure.rule: Host(`frigohero.eu`)
+      traefik.http.routers.frigo_hero_secure.rule: Host(`www.frigohero.eu`)
       traefik.http.routers.frigo_hero_secure.tls: true
       traefik.http.routers.frigo_hero_secure.tls.certresolver: letsencrypt
     options:
