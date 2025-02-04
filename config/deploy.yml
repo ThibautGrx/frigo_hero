@@ -15,9 +15,11 @@ servers:
     #   traefik.http.routers.frigo_hero_secure.rule: Host(`www.frigohero.eu`)
     #   traefik.http.routers.frigo_hero_secure.tls: true
     #   traefik.http.routers.frigo_hero_secure.tls.certresolver: letsencrypt
+
 proxy:
   ssl: true
   host: 'www.frigohero.eu'
+  app_port: 3000
 
 # Credentials for your image host.
 registry:
