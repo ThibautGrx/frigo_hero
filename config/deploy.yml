@@ -37,14 +37,7 @@ env:
     RAILS_SERVE_STATIC_FILES: true
     RAILS_LOG_TO_STDOUT: true
   secret:
-    - POSTGRES_HOST
-    - POSTGRES_USER
-    - POSTGRES_PASSWORD
-    - POSTGRES_DB
-    - GMAIL_USERNAME
-    - GMAIL_PASSWORD
-    - GOOGLE_GEOCODING_API_KEY
-    - IPINFO_GEOCODING_API_KEY
+    - RAILS_MASTER_KEY
 
 #Use a different ssh user than root
 ssh:
@@ -52,7 +45,7 @@ ssh:
 
 # Configure builder setup.
 builder:
-  multiarch: false
+  arch: amd64
   dockerfile: './Dockerfile.prod'
 #   args:
 #     RUBY_VERSION: 3.2.0
