@@ -9,14 +9,17 @@ servers:
   web:
     hosts:
       - 213.32.89.32
-    labels:
-      traefik.http.routers.frigo_hero.rule: Host(`www.frigohero.eu`)
-      traefik.http.routers.frigo_hero_secure.entrypoints: websecure
-      traefik.http.routers.frigo_hero_secure.rule: Host(`www.frigohero.eu`)
-      traefik.http.routers.frigo_hero_secure.tls: true
-      traefik.http.routers.frigo_hero_secure.tls.certresolver: letsencrypt
+    # labels:
+    #   traefik.http.routers.frigo_hero.rule: Host(`www.frigohero.eu`)
+    #   traefik.http.routers.frigo_hero_secure.entrypoints: websecure
+    #   traefik.http.routers.frigo_hero_secure.rule: Host(`www.frigohero.eu`)
+    #   traefik.http.routers.frigo_hero_secure.tls: true
+    #   traefik.http.routers.frigo_hero_secure.tls.certresolver: letsencrypt
     options:
-      network: "private"
+      network: "frigo_hero"
+proxy:
+  ssl: true
+  host: 'www.frigohero.eu'
 
 # Credentials for your image host.
 registry:
@@ -67,13 +70,15 @@ accessories:
     port: 5432
     image: 'postgres:latest'
     volumes:
-      - postgres:/var/lib/postgresql/data
+      - postgres_fh:/var/lib/postgresql/data
     env:
       secret:
       - POSTGRES_HOST
       - POSTGRES_USER
       - POSTGRES_PASSWORD
       - POSTGRES_DB
+    options:
+      network: "frigo_hero"
 #   redis:
 #     image: redis:7.0
 #     host: 192.168.0.2
@@ -82,21 +87,21 @@ accessories:
 #       - data:/data
 
 # Configure custom arguments for Traefik
-traefik:
-  args:
-    entrypoints.web.address: ':80'
-    entrypoints.websecure.address: ':443'
-    certificatesresolvers.letsencrypt.acme.httpchallenge: true
-    certificatesresolvers.letsencrypt.acme.httpchallenge.entrypoint: web
-    certificatesresolvers.letsencrypt.acme.email: devwebtg@gmail.com
-    certificatesresolvers.letsencrypt.acme.storage: /letsencrypt/acme.json
+# traefik:
+#   args:
+#     entrypoints.web.address: ':80'
+#     entrypoints.websecure.address: ':443'
+#     certificatesresolvers.letsencrypt.acme.httpchallenge: true
+#     certificatesresolvers.letsencrypt.acme.httpchallenge.entrypoint: web
+#     certificatesresolvers.letsencrypt.acme.email: devwebtg@gmail.com
+#     certificatesresolvers.letsencrypt.acme.storage: /letsencrypt/acme.json
 
-  options:
-    publish:
-      - "443:443"
-    volume:
-      - letsencrypt:/letsencrypt
-    network: "private"
+#   options:
+#     publish:
+#       - "443:443"
+#     volume:
+#       - letsencrypt:/letsencrypt
+#     network: "frigo_hero"
 
 # Configure a custom healthcheck (default is /up on port 3000)
 # healthcheck:
