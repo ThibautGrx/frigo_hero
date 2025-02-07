@@ -24,8 +24,9 @@ RUN bundle install
 
 ADD . /docker/app
 
-RUN RAILS_ENV=production SECRET_KEY_BASE=1  bin/rails assets:precompile
-RUN RAILS_ENV=production SECRET_KEY_BASE=1  bin/rails assets:precompile
+# FIXME: css is not precompile,running the command twice fix it for now
+RUN SECRET_KEY_BASE=1  bin/rails assets:precompile
+RUN SECRET_KEY_BASE=1  bin/rails assets:precompile
 
 EXPOSE 3000
 
