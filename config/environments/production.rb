@@ -7,7 +7,7 @@ Rails.application.configure do
   config.cache_classes = true
 
   config.hosts << "www.frigohero.eu"
-  config.hosts << "localhost"
+  config.hosts << /[0-9a-f]+/
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
@@ -53,7 +53,7 @@ Rails.application.configure do
 
   # Include generic and useful information about system operation, but avoid logging too much
   # information to avoid inadvertent exposure of personally identifiable information (PII).
-  config.log_level = :info
+  config.log_level = :debug
 
   # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]
